@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心情日记 - Mood Diary</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <h1>Mood Diary</h1>
+                <button id="settings-btn" class="icon-btn" title="设置 AI">⚙️</button>
+            </div>
+            <p class="subtitle">记录当下的碎碎念，生成你的心情之花</p>
+        </header>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden-view">
+            <div class="modal-content">
+                <h3>AI 设置</h3>
+                <p class="modal-desc">配置兼容 OpenAI 格式的 API (如 DeepSeek, ChatGPT)</p>
+                
+                <div class="form-group">
+                    <label>API Base URL</label>
+                    <input type="text" id="api-url" placeholder="https://api.openai.com/v1" value="https://api.openai.com/v1">
+                </div>
+                
+                <div class="form-group">
+                    <label>API Key</label>
+                    <input type="password" id="api-key" placeholder="sk-...">
+                </div>
+
+                <div class="form-group">
+                    <label>模型名称</label>
+                    <input type="text" id="model-name" placeholder="例如: deepseek-chat">
+                </div>
+
+                <div class="modal-actions">
+                    <button id="demo-data-btn" style="background-color: #74b9ff; color: white; margin-right: 10px;">生成演示数据</button>
+                    <button id="reset-data-btn" style="background-color: #ff7675; color: white; margin-right: auto;">重置所有数据</button>
+                    <button id="close-settings">取消</button>
+                    <button id="save-settings" class="primary-btn">保存</button>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <!-- 今天的视图 -->
+            <section id="today-view" class="active-view">
+                <div class="date-display" id="current-date"></div>
+                
+                <div class="flower-container">
+                    <canvas id="daily-flower" width="300" height="300"></canvas>
+                    <div class="flower-caption">今天的心情之花</div>
+                </div>
+
+                <div class="input-section">
+                    <textarea id="mood-input" placeholder="此刻你在想什么？..."></textarea>
+                    <button id="add-btn">记录心情</button>
+                </div>
+
+                <div class="timeline" id="timeline">
+                    <!-- 动态生成的心情条目 -->
+                </div>
+            </section>
+
+            <!-- 历史/罐子视图 -->
+            <section id="jar-view" class="hidden-view">
+                <div style="position: relative;"> <!-- Header Wrapper -->
+                    <h2>心情罐子</h2>
+                    <button id="back-to-today">回到今天</button>
+                </div>
+                <div class="jar-container-wrapper">
+                    <div class="glass-jar">
+                        <!-- Lid removed for crystal ball look -->
+                        <div class="jar-body" id="jar-content">
+                            <!-- 动态生成的历史花朵 -->
+                        </div>
+                        <div class="jar-reflection"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 日历视图 -->
+            <section id="calendar-view" class="hidden-view">
+                <div style="position: relative;">
+                    <h2>心情日历</h2>
+                    <button class="back-to-today-btn" onclick="document.getElementById('back-to-today').click()">回到今天</button>
+                </div>
+                <div class="calendar-header">
+                    <button id="prev-month">❮</button>
+                    <span id="calendar-month-year"></span>
+                    <button id="next-month">❯</button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+                </div>
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- 动态生成日期 -->
+                </div>
+                <!-- Add back button to calendar view as well (shared ID logic needs update in JS if we duplicate, 
+                     but for now let's keep one ID and move it or just use class. 
+                     Simpler: Move the button inside each section but use class in JS, or just one absolute button.
+                     Let's use the one in jar view for now, and I'll add a clone for calendar or make it global absolute)
+                     
+                     Actually, better approach: Make it a global absolute button inside main but only show in non-today views.
+                -->
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <button id="nav-today" class="active">
+                <i>📅</i>
+                <span>今天</span>
+            </button>
+            <button id="nav-calendar">
+                <i>🗓️</i>
+                <span>日历</span>
+            </button>
+            <button id="nav-jar">
+                <i>🔮</i>
+                <span>心情罐子</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
