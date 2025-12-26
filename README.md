@@ -1,6 +1,6 @@
 # 🌸 Mood Diary - AI 情绪花园
 
-一个唯美、治愈的 AI 智能心情日记应用。它不只是记录文字，更能通过 DeepSeek AI 分析你的情绪，将其转化为独一无二的“心情之花”，并封存在梦幻的水晶球中。
+一个唯美、治愈的 AI 智能心情日记应用。它不只是记录文字，更能通过 DeepSeek AI 分析你的情绪，将其转化为独一无二的“心情之花”，并封存在梦幻的水晶球中进行月度总结。
 
 ![Mood Diary Preview](https://via.placeholder.com/800x400?text=Mood+Diary+Preview)
 
@@ -93,9 +93,9 @@ mood-diary/
 2.  **生成演示数据**：在设置中点击“生成演示数据”，瞬间填满你的水晶球。
 3.  **查看历史**：点击底部的“心情罐子”或“日历”按钮，回顾过去。
 
----
+## 后续待优化
+1.**界面设计**：花朵样式应该根据情绪而进行选择，保持风格一致，对现有的花朵样式进行优化。
+2.**情绪识别**：情绪识别应进一步细化。
 
-## 📝 License
 
-MIT License. Feel free to use and modify! 
-Created with ❤️ by Trae AI.
+
